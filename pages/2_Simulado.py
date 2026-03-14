@@ -26,6 +26,9 @@ def main() -> None:
         respostas: dict[int, str] = {}
         for idx, q in enumerate(questoes, start=1):
             st.markdown(f"### Questão {idx}")
+            texto_referencia = str(q.get("texto_referencia") or "").strip()
+            if texto_referencia:
+                st.info(texto_referencia)
             st.write(q["pergunta"])
 
             opcoes = {
@@ -40,6 +43,7 @@ def main() -> None:
                 options=list(opcoes.keys()),
                 format_func=lambda x, m=opcoes: f"{x.upper()}) {m[x]}",
                 key=f"q_{q['id']}",
+                index=None,
             )
             respostas[q["id"]] = escolha
 

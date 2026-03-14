@@ -38,7 +38,8 @@ def main() -> None:
             "opcao_d": "Opção D",
             "correta": "a",
             "dica": "Dica para a questão",
-            "link_conteudo": "https://link-para-estudo.com"
+            "link_conteudo": "https://link-para-estudo.com",
+            "texto_referencia": "Texto opcional de apoio à questão"
           }
         ]
         ```

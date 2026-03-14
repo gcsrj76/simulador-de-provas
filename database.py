@@ -25,7 +25,8 @@ def _criar_tabela_questoes(conn: sqlite3.Connection) -> None:
             opcao_d TEXT NOT NULL,
             correta TEXT NOT NULL,
             dica TEXT,
-            link_conteudo TEXT
+            link_conteudo TEXT,
+            texto_referencia TEXT
         )
         """
     )
@@ -55,15 +56,17 @@ def salvar_questoes(questoes: Iterable[Mapping[str, Any]]) -> int:
                 q.get("correta", "").strip(),
                 q.get("dica", "").strip(),
                 q.get("link_conteudo", "").strip(),
+                q.get("texto_referencia", "").strip(),
             )
         )
 
     cursor.executemany(
         """
         INSERT INTO questoes (
-            pergunta, opcao_a, opcao_b, opcao_c, opcao_d, correta, dica, link_conteudo
+            pergunta, opcao_a, opcao_b, opcao_c, opcao_d, correta, dica, link_conteudo,
+            texto_referencia
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         dados,
     )
@@ -89,7 +92,7 @@ def listar_questoes() -> list[dict[str, Any]]:
         """
         SELECT
             id, pergunta, opcao_a, opcao_b, opcao_c, opcao_d,
-            correta, dica, link_conteudo
+            correta, dica, link_conteudo, texto_referencia
         FROM questoes
         ORDER BY id
         """
