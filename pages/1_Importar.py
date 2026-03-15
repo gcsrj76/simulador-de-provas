@@ -14,7 +14,6 @@ def _validar_questao(q: dict[str, Any]) -> bool:
         "opcao_c",
         "opcao_d",
         "correta",
-        "dica",
         "link_conteudo",
     ]
     return all(campo in q and str(q[campo]).strip() for campo in campos_obrigatorios)
@@ -37,9 +36,9 @@ def main() -> None:
             "opcao_c": "Opção C",
             "opcao_d": "Opção D",
             "correta": "a",
-            "dica": "Dica para a questão",
             "link_conteudo": "https://link-para-estudo.com",
-            "texto_referencia": "Texto opcional de apoio à questão"
+            "texto_referencia": "Texto opcional de apoio à questão",
+            "materia": "Nome da matéria (opcional)"
           }
         ]
         ```
